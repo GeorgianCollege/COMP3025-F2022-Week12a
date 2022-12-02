@@ -1,6 +1,5 @@
 package ca.georgiancollege.comp3025_f2022_week12a
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,6 +24,14 @@ class FragmentOne: Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var tvShows = (activity as MainActivity).TVShows
+        tvShows.add(TVShow("2", "Star Trek: Strange New World", "Paramount+"))
+
+        for (tvShow in tvShows)
+        {
+            Log.i("TVSHow", tvShow.toString())
+        }
+
         var FragmentOneToTwoButton = getView()?.findViewById<Button>(R.id.fragment_one_to_two_button)
 
         FragmentOneToTwoButton?.setOnClickListener{
@@ -32,5 +39,7 @@ class FragmentOne: Fragment()
                 replace<FragmentTwo>(R.id.fragment_container)
             }
         }
+
+        (activity as MainActivity).showDialog()
     }
 }
